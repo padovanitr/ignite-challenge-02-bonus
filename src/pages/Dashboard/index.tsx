@@ -7,11 +7,6 @@ import ModalAddFood from '../../components/ModalAddFood';
 import ModalEditFood from '../../components/ModalEditFood';
 import { FoodsContainer } from './styles';
 
-interface FoodMethods {
-  handleAddFood: (food: {}) => void;
-  handleEditFood: (food: {}) => void;
-}
-
 interface Foods {
   id: number;
   image: string;
@@ -20,6 +15,7 @@ interface Foods {
   description: string;
   price: string;
 }
+
 
 export default function Dashboard() {
   const [foods, setFoods] = useState<Foods[]>([])
@@ -30,8 +26,6 @@ export default function Dashboard() {
   useEffect(() => {
     async function getFoods() {
       const response = await api.get('/foods');
-
-      console.log(response.data)
   
       setFoods(response.data)
     }
@@ -39,7 +33,7 @@ export default function Dashboard() {
     getFoods()
   }, [])
 
-  async function handleAddFood(food: FoodMethods) {
+  async function handleAddFood(food: Foods) {
 
     try {
       const response = await api.post('/foods', {
@@ -56,7 +50,7 @@ export default function Dashboard() {
     }
   }
 
-  async function handleUpdateFood(food: FoodMethods) {
+  async function handleUpdateFood(food: Foods) {
 
     try {
       const foodUpdated = await api.put(
@@ -90,7 +84,7 @@ export default function Dashboard() {
     setEditModalOpen(!editModalOpen)
   }
 
-  function handleEditFood(food: Foods) {
+  function handleEditFood(food: any) {
     setEditingFood(food)
     setEditModalOpen(true)
   }
