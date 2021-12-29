@@ -5,15 +5,26 @@ import { Form } from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
 
-// editingFood: {}
-// handleUpdateFood: async ƒ handleUpdateFood(food)
-// isOpen: false
-// setIsOpen: ƒ toggleEditModal()
+interface Foods {
+  id: number;
+  image: string;
+  name: string;
+  available: boolean;
+  description: string;
+  price: string;
+}
 
-export default function ModalEditFood({ editingFood, handleUpdateFood, isOpen, setIsOpen }) {
+interface ModalEditFoodProps {
+  editingFood: {};
+  handleUpdateFood: (food: Foods) => Promise<void>;
+  isOpen: boolean;
+  setIsOpen: () => void;
+}
+
+export default function ModalEditFood({ editingFood, handleUpdateFood, isOpen, setIsOpen }: ModalEditFoodProps) {
   const formRef = useRef(null)
 
-  async function handleSubmit(data) {
+  async function handleSubmit(data: any) {
     handleUpdateFood(data);
     setIsOpen();
   };
