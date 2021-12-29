@@ -22,10 +22,11 @@ interface ModalAddFoodProps {
 
 export default function ModalAddFood({ setIsOpen, handleAddFood, isOpen }: ModalAddFoodProps) {
   const formRef = useRef(null)
+  console.log(isOpen)
 
   async function handleSubmit (data: any) {
     handleAddFood(data);
-    setIsOpen();
+    setIsOpen()
   };
 
   return (
