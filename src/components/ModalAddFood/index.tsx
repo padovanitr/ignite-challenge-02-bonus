@@ -5,8 +5,17 @@ import { Form } from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
 
+interface Foods {
+  id: number;
+  image: string;
+  name: string;
+  available: boolean;
+  description: string;
+  price: string;
+}
+
 interface ModalAddFoodProps {
-  handleAddFood: (food: {}) => void;
+  handleAddFood: (food: Foods) => Promise<void>;
   isOpen: boolean;
   setIsOpen: () => void;
 }
